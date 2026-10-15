@@ -1,0 +1,19 @@
+## Interface: 16001
+## Title: EzPersistence
+## Notes: Saves your macros, key bindings, action bars, settings and Edit Mode layouts, and puts them back on a new client or character with /ep restore.
+## Author: Marc
+## Version: @project-version@
+## IconTexture: Interface\Icons\INV_Misc_Note_01
+## SavedVariables: EzPersistenceDB
+## OptionalDeps: EzEmote, EzCinematic
+
+Data.lua
+#@do-not-package@
+Baked.lua
+#@end-do-not-package@
+Core.lua
+Macros.lua
+Bindings.lua
+Bars.lua
+Settings.lua
+Layouts.lua
