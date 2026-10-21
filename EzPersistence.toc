@@ -6,6 +6,7 @@
 ## IconTexture: Interface\Icons\INV_Misc_Note_01
 ## SavedVariables: EzPersistenceDB
 ## OptionalDeps: EzEmote, EzCinematic
+## X-Curse-Project-ID: 1758586
 
 Data.lua
 #@do-not-package@
