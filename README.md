@@ -52,20 +52,32 @@ Saves are kept per character, under the name of the character that ran `/ep save
 - Spells the new character doesn't know (another class, or not learned yet) are skipped and listed in chat. Everything else is placed.
 - Happy with the result? `/ep save` on the new character so it has its own copy and plain `/ep restore` works there.
 
-## Moving to a new client or PC
+## Moving from the beta to WoW Forever
 
-Your saves are stored in the client's `WTF` folder, so a fresh install starts empty. Bring them along by copying one file:
+Your saves are stored in the client's `WTF` folder, so the WoW Forever client starts empty. The beta and WoW Forever are separate folders inside your World of Warcraft install:
 
-1. `/ep save` on every character you want to keep, then **exit the game** (the file is written when you log out).
-2. Find the file on the old client:
-   `World of Warcraft\_<client>_\WTF\Account\<ACCOUNT NAME>\SavedVariables\EzPersistence.lua`
-3. Install EzPersistence on the new client and log in once, so the game creates its `WTF\Account\<ACCOUNT NAME>` folder. Then exit the game.
-4. Copy `EzPersistence.lua` into the new client's `WTF\Account\<ACCOUNT NAME>\SavedVariables\` folder. Replace the file if there's one there.
-   - The account folder name can differ between clients (a number on one, your account name on another). Use whichever one the new client made.
-5. Log in and `/ep restore` (or `/ep restore <name>` on a character with a different name).
-6. Import your Edit Mode layouts ([below](#edit-mode-layouts)).
+| Client | Folder |
+| --- | --- |
+| Beta | `World of Warcraft\_classic_beta_\` |
+| WoW Forever | `World of Warcraft\_forever_\` |
 
-Copy the file only while the game is closed: the game rewrites it when you log out, and would overwrite your copy.
+Bring your saves along by copying one file:
+
+1. **On the beta:** `/ep save` on every character you want to keep, then **exit the game** (the file is written when you log out).
+2. **On WoW Forever:** install EzPersistence, log in once so the game creates your account folder, then exit the game.
+3. **Copy** `EzPersistence.lua`
+   - from `World of Warcraft\_classic_beta_\WTF\Account\<ACCOUNT>\SavedVariables\`
+   - to `World of Warcraft\_forever_\WTF\Account\<ACCOUNT>\SavedVariables\`
+
+   Replace the file if there's one there already.
+4. **Log in on WoW Forever** and type `/ep restore` (or `/ep restore <name>` if the character has a different name).
+5. **Import your Edit Mode layouts** ([below](#edit-mode-layouts)).
+
+Good to know:
+
+- **`<ACCOUNT>` is usually a different folder on each client**: a number like `12345678#1` on the beta, your account name in capitals on WoW Forever. Copy from the one on the beta, into the one WoW Forever created.
+- **Copy only while the game is closed.** The game rewrites the file when you log out and would overwrite your copy.
+- The default install is `C:\Program Files (x86)\World of Warcraft\`. The same steps work between any two clients or PCs: copy the file from one client's `WTF\Account\<ACCOUNT>\SavedVariables\` to the other's.
 
 ## Edit Mode layouts
 
