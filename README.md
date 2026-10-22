@@ -58,16 +58,16 @@ Your saves are stored in the client's `WTF` folder, so the WoW Forever client st
 
 | Client | Folder |
 | --- | --- |
-| Beta | `World of Warcraft\_classic_beta_\` |
-| WoW Forever | `World of Warcraft\_forever_\` |
+| Beta | `C:\Program Files (x86)\World of Warcraft\_classic_beta_\` |
+| WoW Forever | `C:\Program Files (x86)\World of Warcraft\_forever_\` |
 
 Bring your saves along by copying one file:
 
 1. **On the beta:** `/ep save` on every character you want to keep, then **exit the game** (the file is written when you log out).
 2. **On WoW Forever:** install EzPersistence, log in once so the game creates your account folder, then exit the game.
 3. **Copy** `EzPersistence.lua`
-   - from `World of Warcraft\_classic_beta_\WTF\Account\<ACCOUNT>\SavedVariables\`
-   - to `World of Warcraft\_forever_\WTF\Account\<ACCOUNT>\SavedVariables\`
+   - **from** `C:\Program Files (x86)\World of Warcraft\_classic_beta_\WTF\Account\<ACCOUNT>\SavedVariables\EzPersistence.lua`
+   - **to** `C:\Program Files (x86)\World of Warcraft\_forever_\WTF\Account\<ACCOUNT>\SavedVariables\`
 
    Replace the file if there's one there already.
 4. **Log in on WoW Forever** and type `/ep restore` (or `/ep restore <name>` if the character has a different name).
@@ -77,7 +77,7 @@ Good to know:
 
 - **`<ACCOUNT>` is usually a different folder on each client**: a number like `12345678#1` on the beta, your account name in capitals on WoW Forever. Copy from the one on the beta, into the one WoW Forever created.
 - **Copy only while the game is closed.** The game rewrites the file when you log out and would overwrite your copy.
-- The default install is `C:\Program Files (x86)\World of Warcraft\`. The same steps work between any two clients or PCs: copy the file from one client's `WTF\Account\<ACCOUNT>\SavedVariables\` to the other's.
+- Those are the default install paths; if you installed WoW somewhere else, start from your own `World of Warcraft` folder. The same steps work between any two clients or PCs: copy the file from one client's `WTF\Account\<ACCOUNT>\SavedVariables\` to the other's.
 
 ## Edit Mode layouts
 
