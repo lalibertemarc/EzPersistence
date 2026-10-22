@@ -1,8 +1,27 @@
 # EzPersistence
 
-**Your macros, key bindings, action bars and settings, saved by you and put back anywhere.**
+**Save your macros, key bindings, action bars, settings and Edit Mode layouts with one command. Put them back on any character, or on a new client, with another.**
 
-Macros, bindings and bars live in the game's `WTF` folder and on Blizzard's servers, tied to one client install and one character. Move to a new client, realm or character and you rebuild them by hand. EzPersistence saves them with one command and puts them back with another.
+New client install, new PC, a new character, or a server reset? Your macros, bindings and bars stay behind with the old one, and you rebuild them by hand. EzPersistence keeps a copy you control: `/ep save` today, `/ep restore` wherever you play next.
+
+Made for **WoW Forever**.
+
+## Quick start
+
+1. Log in on your main and type **`/ep save`**.
+2. On the character (or client) you want it on, type **`/ep restore`**.
+   - Different character name? Add the name you saved: **`/ep restore aelra`**.
+3. Done. Chat tells you what was created, changed or skipped.
+
+Not sure what will change? **`/ep status`** compares first and changes nothing.
+
+## What gets saved
+
+- **Macros:** this character's macros and your account-wide ones. If you use **EzEmote**, its custom lines and chains too.
+- **Key bindings:** every bound key, including keys bound to macros, spells and other addons' buttons, and whether they were account-wide or for this character only.
+- **Action bars:** every slot on every bar. Spells, items, macros and equipment sets are put back; mounts, pets and flyouts are left as they are.
+- **Settings:** the game options you changed from their defaults (interface, nameplates, combat text, sound volumes…). Graphics and hardware options stay with the PC.
+- **Edit Mode layouts:** saved as Edit Mode share text, ready to paste back in ([see below](#edit-mode-layouts)).
 
 ## Commands
 
@@ -10,62 +29,65 @@ Macros, bindings and bars live in the game's `WTF` folder and on Blizzard's serv
 
 | Command | What it does |
 | --- | --- |
-| `/ep save` | Saves this character's macros, key bindings, action bars, settings and Edit Mode layouts |
-| `/ep restore [part] [name]` | Puts them back on the character you're on |
-| `/ep status [part] [name]` | Shows what differs from the saved copy |
-| `/ep list` | Characters with something saved |
-| `/ep layouts [n] [name]` | Opens saved Edit Mode layout `n` (default 1), ready to copy into Edit Mode's Import. On a character that didn't save them, add the saver's name: `/ep layouts bergaber` |
+| `/ep save` | Save this character's macros, key bindings, action bars, settings and Edit Mode layouts |
+| `/ep restore [part] [name]` | Put them back on the character you're playing |
+| `/ep status [part] [name]` | Show what differs from the saved copy, without changing anything |
+| `/ep list` | List the characters you've saved |
+| `/ep layouts [n] [name]` | Open saved Edit Mode layout number `n` (default 1), ready to copy into Edit Mode |
 
-Parts are `macros`, `bindings`, `bars`, `settings` and `layouts`; leave them out for all of them. `[name]` is a character's first name; leave it out for the character you're on. `/ep restore bars olizzy` puts Olizzy's action bars on whoever you're playing.
+- **`[part]`** is `macros`, `bindings`, `bars`, `settings` or `layouts`. Leave it out for everything.
+- **`[name]`** is the first name of the character you saved. Leave it out to use the character you're on.
 
-## What gets saved
+Examples:
 
-- **Macros:** this character's and the account's, plus your **EzEmote** custom lines and chains (the `/eze <name>` lines macros run).
-- **Key bindings:** every bound key, including keys bound to macros, spells and addon buttons, and whether they were account-wide or character-specific.
-- **Action bars:** every slot. Spells, items, macros and equipment sets are put back; mounts, pets and flyouts are left as they are.
-- **Settings:** the game options you changed from their defaults (interface, nameplates, combat text, sound volumes). Graphics and hardware options stay with the PC.
-- **Edit Mode layouts:** saved as Edit Mode's share text. `/ep restore` does **not** put them back: you import them by hand, see below.
+- `/ep restore` — everything you saved on this character, back on it.
+- `/ep restore aelra` — everything Aelra saved, on the character you're playing now.
+- `/ep restore bars aelra` — only Aelra's action bars.
+- `/ep restore macros bindings` — only macros and key bindings.
 
-## Restoring Edit Mode layouts (by hand)
+## Restoring on a different character
 
-Layouts are the one part `/ep restore` can't do for you (writing Edit Mode layouts from an addon could break Edit Mode), so you paste them in yourself. It takes a minute, and you only do it once if you import them as account layouts.
+Saves are kept per character, under the name of the character that ran `/ep save`. Any character on the same account can use any of them: add that name to the command (`/ep restore aelra`).
 
-Layouts are saved **per character**, under the name of the character you ran `/ep save` on. On a new character, or one with a different name, plain `/ep layouts` finds nothing — **add the name of the character that saved them**:
+- Spells the new character doesn't know (another class, or not learned yet) are skipped and listed in chat. Everything else is placed.
+- Happy with the result? `/ep save` on the new character so it has its own copy and plain `/ep restore` works there.
 
-1. Type `/ep layouts bergaber` (use your own saved character's first name; `/ep list` shows them). A box opens with the first layout's text already selected.
+## Moving to a new client or PC
+
+Your saves are stored in the client's `WTF` folder, so a fresh install starts empty. Bring them along by copying one file:
+
+1. `/ep save` on every character you want to keep, then **exit the game** (the file is written when you log out).
+2. Find the file on the old client:
+   `World of Warcraft\_<client>_\WTF\Account\<ACCOUNT NAME>\SavedVariables\EzPersistence.lua`
+3. Install EzPersistence on the new client and log in once, so the game creates its `WTF\Account\<ACCOUNT NAME>` folder. Then exit the game.
+4. Copy `EzPersistence.lua` into the new client's `WTF\Account\<ACCOUNT NAME>\SavedVariables\` folder. Replace the file if there's one there.
+   - The account folder name can differ between clients (a number on one, your account name on another). Use whichever one the new client made.
+5. Log in and `/ep restore` (or `/ep restore <name>` on a character with a different name).
+6. Import your Edit Mode layouts ([below](#edit-mode-layouts)).
+
+Copy the file only while the game is closed: the game rewrites it when you log out, and would overwrite your copy.
+
+## Edit Mode layouts
+
+Layouts are the one thing `/ep restore` doesn't write back: changing Edit Mode layouts from an addon can break Edit Mode, so you paste them in yourself. It takes a minute, and if you import them as **Account** layouts you only do it once.
+
+1. Type **`/ep layouts`** — or **`/ep layouts aelra`** on a character that didn't save them. A box opens with the layout already selected.
 2. Press **Ctrl+C**.
-3. Open **Edit Mode** (Esc > Edit Mode), click the **layout dropdown** at the top, choose **Import**.
-4. Press **Ctrl+V**, give the layout a name, and pick **Account** so every character gets it (or **Character** for just this one). Click **Import**.
-5. Saved more than one layout? The chat lists them by number. `/ep layouts 2 bergaber` opens the second, `/ep layouts 3 bergaber` the third, and so on. Repeat steps 2–4 for each.
-6. Pick the layout you want in the Edit Mode dropdown and **Save**.
+3. Open **Edit Mode** (Esc → Edit Mode), click the **layout dropdown** at the top and choose **Import**.
+4. Press **Ctrl+V**, name the layout, choose **Account** (every character) or **Character** (this one), and click **Import**.
+5. Saved more than one? Chat lists them by number: `/ep layouts 2 aelra`, `/ep layouts 3 aelra`… Repeat steps 2–4.
+6. Pick the layout in the Edit Mode dropdown and **Save**.
 
-If you run plain `/ep layouts` on a character with nothing saved, it tells you which characters do have layouts.
-
-## Moving to a new client
-
-Saved data lives in the client's `WTF` folder, so a new install starts empty. Two ways to bring it along:
-
-- **Copy the save file** (anyone): copy `WTF\Account\<account>\SavedVariables\EzPersistence.lua` from the old client into the same place on the new one, with the game closed.
-- **Bake it into the addon** (if you run the addon from its source folder, e.g. a git clone): `tools\bake.ps1` writes your saves into `Baked.lua`, which your install then loads on any client.
-
-Baking, step by step:
-
-1. `/ep save` on every character you want to keep, then log out.
-2. Run `tools\bake.ps1` in the addon folder. It finds `EzPersistence.lua` under `C:\Program Files (x86)\World of Warcraft`; if it finds more than one (several clients), it lists them — pass the one you want with `-SavedVariables <path>`.
-3. Point the new client at the same addon folder and log in.
-4. On a character with the **same first name** as one you saved: `/ep restore`. On any other character: `/ep restore <saved name>` (for example `/ep restore bergaber`).
-5. Import your Edit Mode layouts by hand: [Restoring Edit Mode layouts](#restoring-edit-mode-layouts-by-hand).
-
-## Your data stays yours
-
-- Everything is stored in your own client's `WTF` folder (`EzPersistenceDB`), per account. Nothing is sent anywhere.
-- The addon you download carries no one's profiles: `/ep list` starts empty until you `/ep save`.
-- `Baked.lua` is personal. It's git-ignored and left out of release packages, so baking never ends up in a download.
+On a character with no layouts saved, `/ep layouts` tells you which characters have some.
 
 ## Good to know
 
-- Restores run out of combat only, through the game's normal API: the same calls Blizzard's macro window, key binding screen and action bar dragging use.
-- `restore` makes things match the saved copy: changed macros are overwritten, extra key bindings and action bar slots are cleared, and settings you hadn't changed go back to default.
-- Spells your character doesn't know (yet) are listed and skipped.
-- Settings aren't saved or restored while EzCinematic's screenshot mode is on.
-- Made for **WoW Forever**
+- **Restore makes things match the saved copy.** Changed macros are overwritten, extra key bindings and action bar slots are cleared, and settings you hadn't changed when you saved go back to default. Use `/ep status` first if you're unsure, or restore one part at a time.
+- **Out of combat only.** Restores use the game's normal API: the same calls the macro window, the key bindings screen and dragging onto your bars use.
+- **Your data stays yours.** Everything is stored in your own `WTF` folder. Nothing is sent anywhere, and a fresh download carries no one's profiles.
+- **Login reminder:** if macros you saved on this character are missing or changed, chat tells you 10 seconds after logging in.
+- With **EzCinematic**'s screenshot mode on, settings aren't saved or restored (it changes them temporarily).
+
+## Running from source
+
+If you run the addon from a git clone instead of a download, `tools\bake.ps1` copies your saves into `Baked.lua` inside the addon folder, so any client that loads that folder has them. `Baked.lua` is git-ignored and never packaged. Run it after `/ep save` and logging out; if it finds saves on several clients, pass the one you want with `-SavedVariables <path>`.
