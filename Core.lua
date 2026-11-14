@@ -148,12 +148,26 @@ function commands.list()
     end
 end
 
+-- Login reminder about missing/changed macros, account-wide (nil = on).
+function commands.hint(arg)
+    arg = strlower(arg or "")
+    if arg == "on" then
+        db.hint = nil
+    elseif arg == "off" then
+        db.hint = false
+    else
+        db.hint = db.hint == false and nil or false
+    end
+    Print("login reminder about missing or changed macros " .. (db.hint == false and "|cffff5555off|r." or "|cff33ff99on|r."))
+end
+
 local HELP = {
     "/ep save - save this character's macros, key bindings, action bars, settings and Edit Mode layouts",
     "/ep restore [part] [name] - put them back on this character (default: everything you saved here)",
     "/ep status [part] [name] - what differs from the saved copy",
     "/ep list - characters with something saved",
     "/ep layouts [n] [name] - copy a saved Edit Mode layout to import it (name = the character that saved it)",
+    "/ep hint [on|off] - the login reminder about missing or changed macros",
     "Parts: macros, bindings, bars, settings, layouts",
 }
 
@@ -175,11 +189,12 @@ end
 ---------------------------------------------------------------------------
 -- Macros arrive from the server shortly after login, so wait before checking.
 local function Hint()
+    if db.hint == false then return end
     local profile = ns.Profile(ns.Me())
     if not profile then return end
     local pending = #ns.MacrosPending(profile, ns.Account())
     if pending > 0 then
-        Print(("%d of your saved macros are missing or changed. |cffaaaaaa/ep status|r to see them, |cffaaaaaa/ep restore macros|r to put them back.")
+        Print(("%d of your saved macros are missing or changed. |cffaaaaaa/ep status|r to see them, |cffaaaaaa/ep restore macros|r to put them back, |cffaaaaaa/ep hint off|r to stop this reminder.")
             :format(pending))
     end
 end

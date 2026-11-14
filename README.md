@@ -34,6 +34,7 @@ Not sure what will change? **`/ep status`** compares first and changes nothing.
 | `/ep status [part] [name]` | Show what differs from the saved copy, without changing anything |
 | `/ep list` | List the characters you've saved |
 | `/ep layouts [n] [name]` | Open saved Edit Mode layout number `n` (default 1), ready to copy into Edit Mode |
+| `/ep hint [on\|off]` | Turn the login reminder about missing or changed macros on or off (all characters) |
 
 - **`[part]`** is `macros`, `bindings`, `bars`, `settings` or `layouts`. Leave it out for everything.
 - **`[name]`** is the first name of the character you saved. Leave it out to use the character you're on.
@@ -97,7 +98,7 @@ On a character with no layouts saved, `/ep layouts` tells you which characters h
 - **Restore makes things match the saved copy.** Changed macros are overwritten, extra key bindings and action bar slots are cleared, and settings you hadn't changed when you saved go back to default. Use `/ep status` first if you're unsure, or restore one part at a time.
 - **Out of combat only.** Restores use the game's normal API: the same calls the macro window, the key bindings screen and dragging onto your bars use.
 - **Your data stays yours.** Everything is stored in your own `WTF` folder. Nothing is sent anywhere, and a fresh download carries no one's profiles.
-- **Login reminder:** if macros you saved on this character are missing or changed, chat tells you 10 seconds after logging in.
+- **Login reminder:** if macros you saved on this character are missing or changed, chat tells you 10 seconds after logging in. `/ep hint off` stops it.
 - With **EzCinematic**'s screenshot mode on, settings aren't saved or restored (it changes them temporarily).
 
 ## Running from source
