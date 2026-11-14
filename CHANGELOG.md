@@ -1,5 +1,10 @@
 # EzPersistence
 
+## v1.1.0
+
+- `/ep hint off` turns off the login reminder about missing or changed macros (all characters); `/ep hint on` brings it back.
+- Listed under **Miscellaneous** in the game's AddOns list.
+
 ## v1.0.0
 
 - First release for WoW Forever.
